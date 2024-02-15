@@ -79,3 +79,47 @@ export const standardLibrary = Object.freeze({
   ln: new Function("ln", 1),
   hypot: new Function("hypot", 2),
 })
+
+//Stack Machine Core
+
+export class SMInstruction {
+  constructor(OPNAME, OPARG = "", STACK = "") {
+    Object.assign(this, { OPNAME, OPARG, STACK })
+  }
+
+  setup(OPARG, STACK) {
+    Object.assign(this, { OPARG, STACK })
+    return new SMInstruction(this.OPNAME, OPARG, STACK)
+  }
+}
+
+export const instructionSet = Object.freeze({
+  NOOP: new SMInstruction("NOOP"),
+  LOAD: new SMInstruction("LOAD"),
+  STORE: new SMInstruction("STORE"),
+  POP: new SMInstruction("POP"),
+  NEG: new SMInstruction("NEG"),
+  OR: new SMInstruction("OR"),
+  AND: new SMInstruction("AND"),
+  LTE: new SMInstruction("LTE"),
+  LT: new SMInstruction("LT"),
+  EQ: new SMInstruction("EQ"),
+  NEQ: new SMInstruction("NEQ"),
+  GTE: new SMInstruction("GTE"),
+  GT: new SMInstruction("GT"),
+  ADD: new SMInstruction("ADD"),
+  SUB: new SMInstruction("SUB"),
+  MUL: new SMInstruction("MUL"),
+  DIV: new SMInstruction("DIV"),
+  MOD: new SMInstruction("MOD"),
+  EXP: new SMInstruction("EXP"),
+  CALL: new SMInstruction("CALL"),
+  JUMP: new SMInstruction("JUMP"),
+  JUMPF: new SMInstruction("JUMPF"),
+  STFUNC: new SMInstruction("STFUNC"),
+  MKFUNC: new SMInstruction("MKFUNC"),
+  STPARM: new SMInstruction("STPARM"),
+  MKPARM: new SMInstruction("MKPARM"),
+  STBODY: new SMInstruction("STBODY"),
+  MKBODY: new SMInstruction("MKBODY"),
+})

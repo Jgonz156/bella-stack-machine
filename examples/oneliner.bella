@@ -1,1 +1,1 @@
-let x = false; print sqrt(16);
+let y = -16; let x = -y; print sqrt(x);

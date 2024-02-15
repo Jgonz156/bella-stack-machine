@@ -5,7 +5,7 @@
 
 import { standardLibrary } from "./core.js"
 
-export default function generate(program) {
+export default function generateJS(program) {
   const output = []
 
   // Variable names in JS will be suffixed with _1, _2, _3, etc. This is
@@ -56,6 +56,7 @@ export default function generate(program) {
       output.push(`console.log(${argument});`)
     },
     Assignment(s) {
+      gen(s.source)
       output.push(`${targetName(s.target)} = ${gen(s.source)};`)
     },
     WhileStatement(s) {

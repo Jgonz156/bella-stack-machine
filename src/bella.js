@@ -16,13 +16,18 @@ Prints to stdout according to <outputType>, which must be one of:
   analyzed   the statically analyzed representation
   optimized  the optimized semantically analyzed representation
   js         the translation to JavaScript
+  sm         the translation to the custom virtual stack machine
 `
 
 async function compileFromFile(filename, outputType) {
   try {
     const buffer = await fs.readFile(filename)
     const compiled = compile(buffer.toString(), outputType)
-    console.log(compiled instanceof Program ? stringify(compiled) : compiled)
+    if (outputType == "sm") {
+      console.table(compiled)
+    } else {
+      console.log(compiled instanceof Program ? stringify(compiled) : compiled)
+    }
   } catch (e) {
     console.error(`\u001b[31m${e}\u001b[39m`)
     process.exitCode = 1

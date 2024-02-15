@@ -42,6 +42,7 @@ The `outputType` indicates what you wish to print to standard output:
 <tr><td>analyzed</td><td>The decorated AST</td></tr>
 <tr><td>optimized</td><td>The optimized decorated AST</td></tr>
 <tr><td>js</td><td>The translation of the program to JavaScript</td></tr>
+<tr><td>sm</td><td>The translation of the program to a Custom Stack Machine</td></tr>
 </table>
 
 Example runs:
